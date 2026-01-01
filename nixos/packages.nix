@@ -182,7 +182,7 @@
     go # Go programming language
     gopls # Go LSP
     delve # Go debugger
-    templ # A language for writing HTML user interfaces in Go. 
+    templ # A language for writing HTML user interfaces in Go.
     golangci-lint # Fast linters Runner for Go
 
     # Nix
@@ -200,7 +200,7 @@
     shellcheck # Проверка shell скриптов на ошибки
     shfmt # Shell parser and formatter
 
-    # SQL 
+    # SQL
     sqls # SQL LSP
     postgres-lsp # Postgres LSP
     sqlite
@@ -415,7 +415,7 @@
     #   # withOpenASAR = true; # Оптимизатор дискрода
     #   withVencord = true; # Имба плагины                               # TODO: Настройки надо сделать декларативными
     # })
-    pkgs2.discord
+    # pkgs2.discord
     pkgs2.telegram-desktop
 
     ###########
