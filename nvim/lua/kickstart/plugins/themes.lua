@@ -1,7 +1,7 @@
 -- You can easily change to a different colorscheme.
 -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 
--- Cмена тем тут сделана уёбищно
+-- Cмена тем тут сделана неудобно
 -- Чтоб сменить стандартную тему, надо раскомментировать vim.cmd.colorscheme под именем темы
 -- и закомментировать это же у прошлой темы
 
@@ -29,24 +29,67 @@ for _, variant in ipairs(variants) do
 end
 
 return {
-    {
-        'folke/tokyonight.nvim',
-        priority = 1000,
-        init = function()
-            -- 'tokyonight-storm', 'tokyonight-moon', 'tokyonight-day', 'tokyonight-night'
-            -- vim.cmd.colorscheme 'tokyonight-night'
-            vim.cmd.hi 'Comment gui=none' -- Убрать курсив у коммента в коде
-        end,
-    },
-    {
-        'rose-pine/neovim',
-        name = 'rose-pine',
-        priority = 1000,
-        init = function()
-            -- 'rose-pine-moon', 'rose-pine-main', 'rose-pine-dawn'
-            -- vim.cmd.colorscheme 'rose-pine-main'
-        end,
-    },
+    -- {
+    --     'folke/tokyonight.nvim',
+    --     priority = 1000,
+    --     init = function()
+    --         -- 'tokyonight-storm', 'tokyonight-moon', 'tokyonight-day', 'tokyonight-night'
+    --         -- vim.cmd.colorscheme 'tokyonight-night'
+    --         vim.cmd.hi 'Comment gui=none' -- Убрать курсив у коммента в коде
+    --     end,
+    -- },
+    -- {
+    --     'rose-pine/neovim',
+    --     name = 'rose-pine',
+    --     priority = 1000,
+    --     init = function()
+    --         -- 'rose-pine-moon', 'rose-pine-main', 'rose-pine-dawn'
+    --         -- vim.cmd.colorscheme 'rose-pine-main'
+    --     end,
+    -- },
+    -- {
+    --     'loctvl842/monokai-pro.nvim',
+    --     priority = 1000,
+    --     config = function()
+    --         -- 'monokai-pro', 'monokai-pro-classic', 'monokai-pro-default', 'monokai-pro-machine',
+    --         -- 'monokai-pro-octagon', 'monokai-pro-spectrum', 'monokai-pro-ristretto'
+    --         -- vim.cmd.colorscheme 'monokai-pro'
+    --     end,
+    -- },
+    -- {
+    --     'catppuccin/nvim',
+    --     name = 'catppuccin',
+    --     priority = 1000,
+    --     config = function()
+    --         -- 'catppuccin', 'catppuccin-latte', 'catppuccin-frappe',
+    --         -- 'catppuccin-macchiato', 'catppuccin-mocha'
+    --         -- vim.cmd.colorscheme 'catppuccin'
+    --     end,
+    -- },
+    -- {
+    --     'rebelot/kanagawa.nvim',
+    --     priority = 1000,
+    --     config = function()
+    --         -- 'kanagawa-wave', 'kanagawa-dragon', 'kanagawa-lotus',
+    --         -- vim.cmd.colorscheme 'kanagawa-dragon'
+    --     end,
+    -- },
+    -- {
+    --     'EdenEast/nightfox.nvim',
+    --     priority = 1000,
+    --     config = function()
+    --         -- 'nightfox', 'dayfox', 'dawnfox', 'duskfox'
+    --         -- 'nordfox', 'terafox', 'carbonfox'
+    --         -- vim.cmd.colorscheme 'carbonfox'
+    --     end,
+    -- },
+    -- {
+    --     'AlexvZyl/nordic.nvim',
+    --     priority = 1000,
+    --     config = function()
+    --         -- vim.cmd.colorscheme 'nordic'
+    --     end,
+    -- },
 
     ----------------------------------------------------------
     -- Гандоны не дают выбрать тему нормально               --
@@ -106,4 +149,38 @@ return {
             vim.cmd.colorscheme 'gruvbox'
         end,
     },
+    -- {
+    --     'sainnhe/everforest',
+    --     priority = 1000,
+    --     init = function()
+    --         -- 'hard', 'medium', 'soft'
+    --         vim.g.everforest_background = 'hard'
+    --         vim.g.everforest_better_performance = 1
+    --         -- vim.g.everforest_enable_italic = true
+    --         -- vim.cmd.colorscheme 'everforest'
+    --     end,
+    -- },
+    -- {
+    --     'sainnhe/sonokai',
+    --     priority = 1000,
+    --     init = function()
+    --         -- Очень разные темы
+    --         -- 'default', 'atlantis', 'andromeda', 'shusia', 'maia', 'espresso'
+    --         vim.g.sonokai_style = 'shusia'
+    --         vim.g.sonokai_better_performance = 1
+    --         -- vim.g.sonokai_enable_italic = true
+    --         -- vim.cmd.colorscheme 'sonokai'
+    --     end,
+    -- },
+    -- {
+    --     'sainnhe/edge',
+    --     priority = 1000,
+    --     init = function()
+    --         -- 'default', 'aura', 'neon'
+    --         vim.g.edge_style = 'default'
+    --         vim.g.edge_better_performance = 1
+    --         -- vim.g.edge_enable_italic = true
+    --         -- vim.cmd.colorscheme 'edge'
+    --     end,
+    -- },
 }

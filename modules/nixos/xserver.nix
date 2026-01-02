@@ -1,4 +1,4 @@
-{ spkgs, ... }: {
+{ pkgs, ... }: {
 
   services.displayManager = {
     defaultSession = "none+bspwm"; # only effective for GDM, LightDM and SDDM
@@ -7,7 +7,7 @@
       # sudo cp image.png /var/lib/AccountsService/icons/username
       # То есть именно username, без .png в конце
       enable = true;
-      package = spkgs.libsForQt5.sddm; # qt5 sddm
+      # package = pkgs.kdePackages.sddm; # qt6 sddm
       theme = "chili";
     };
   };
@@ -47,7 +47,7 @@
     # https://discourse.nixos.org/t/amd-gpu-optimal-settings/27648/3
 
     # videoDrivers = [ "nvidia" ]; # https://nixos.wiki/wiki/Nvidia
-    # videoDrivers = [ "amdgpu" ]; # https://nixos.wiki/wiki/AMD_GPU
-    # deviceSection = ''Option "TearFree" "True"'';
+    videoDrivers = [ "amdgpu" ]; # https://nixos.wiki/wiki/AMD_GPU
+    deviceSection = ''Option "TearFree" "True"'';
   };
 }

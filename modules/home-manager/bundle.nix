@@ -2,11 +2,16 @@
   imports = [
     ./ranger/ranger.nix
 
+    # ./gui/vscode.nix
+
+    ./imv/imv.nix
     ./mpv/mpv.nix
     ./obs/obs.nix
 
     ./terminal/alacritty.nix
+    ./terminal/git.nix
     ./terminal/kitty.nix
+    ./terminal/lynx.nix
     ./terminal/starship.nix
     ./terminal/zellij.nix
     ./terminal/zsh.nix
@@ -23,21 +28,12 @@
     ./wm/dunst.nix
     ./wm/lockscreen.nix
 
-    # Для выключения i3 комментируй все строки ниже
+    # Для выключения i3wm комментируй все строки ниже
     ./wm/i3.nix
 
     # Для выключения bspwm комментируй все строки ниже
     ./wm/bspwm/bspwm.nix
     ./wm/bspwm/polybar.nix
     ./wm/bspwm/sxhkd.nix
-
-    ##################
-    ## WM (Wayland) ##
-    ##################
-
-    # Wayland гавно лаганое, но мб на NixOS дела будут лучше
-    # Мб я сделаю конфиги для sway и hyprland на ags
-    # Каталог wm мб переименовать в X11 и создать отдельный Wayland
-
   ];
 }

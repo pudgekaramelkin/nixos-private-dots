@@ -18,8 +18,8 @@
       rbs = "sudo nixos-rebuild switch --impure --flake ${flakeDir}"; # Применить новый конфиг сразу
       rbb = "sudo nixos-rebuild boot --impure --flake ${flakeDir}"; # Применить новый конфиг после ребута пк
 
-      # Я не помню что это значит, не использую
-      upg = "sudo nixos-rebuild switch --impure --upgrade --flake ${flakeDir}";
+      # Можно назвать аналогом "sudo pacman -Su", не "Syu", репу не обновляет
+      upg = "sudo nixos-rebuild switch --impure --upgrade --flake ${flakeDir}"; # Обновить пакеты, но не репозиторий во fleke.lock
 
       # Обновить все flake inputs до последних версий. Возможно это аналог "sudo pacman -Sy" на Arch Linux
       # Если после upd дописать название инпута из flake.nix, то обновится только указанный инпут
@@ -35,12 +35,10 @@
       vi = "nvim";
       v = "nvim";
       
-      k = "kubectl";
       t = "timer";
       r = "ranger --choosedir=/tmp/choosedir && cd \"$(cat /tmp/choosedir)\"";
       g = "gitui";
       f = "fastfetch";
-      b = "bat --color=always -p --pager='-r'"; # Веди себя как cat, но с цветами
     };
 
     history = {
@@ -53,9 +51,8 @@
     # };
 
     # Extra commands that should be added to .zshrc
-    initContent = ''
+    initExtra = ''
       source ${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh
-      unset -f d
     '';
 
     historySubstringSearch = {
@@ -94,6 +91,8 @@
         "universalarchive" # Run "ua <format> <files>"" to compress <files> into an archive file using <format>
         # "vi-mode" # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
         # "watson" # Completion for https://github.com/TailorDev/Watson (CLI to track your time)
+        # "z" # Tracks your most visited directories and allows you to access them with very few keystrokes
+        "zoxide" # Как "z", но быстрее и с более сложным и точным алгоритмом для ранжирования директорий
       ];
     };
   };

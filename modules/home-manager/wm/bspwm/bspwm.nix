@@ -7,9 +7,11 @@
     # Как я понял, эти команды выполняются в начале bspwmrc
     # Ниже настройки для основного монитора. Мб вместе с --primary надо
     # И настройки для второго (правого) монитора
-    extraConfigEarly = ''
-      xrandr --output Virtual-1 --mode 1920x1080
-    '';
+     extraConfigEarly = ''
+    #   xrandr --output DisplayPort-2 --mode 1920x1080 --rate 165
+    #   xrandr --output HDMI-A-0 --mode 1920x1080 --rate 60 --right-of DisplayPort-2
+       xrandr --output HDMI-A-0 --mode 1920x1080 --rate 60
+     '';
 
     # Эти команды выполняются в конце bspwmrc
     extraConfig = ''
@@ -21,12 +23,10 @@
     startupPrograms = [
       # "lxqt-policykit-agent" # Заменил на гномовский
       "sxhkd"
-      "nm-applet" # Нетворк манагер
+      "nm-applet"
       "ksnip"
       "xset s off -dpms" # Отменить затухание экрана через X минут
       "spice-vdagent" # Для виртуалки
-      "systemctl --user import-environment PATH" # Фикс портала, мб надо ребут портала тоже добавить
-      "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk"
     ];
 
     monitors = let

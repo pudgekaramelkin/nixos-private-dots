@@ -14,9 +14,9 @@
     # Если с каким-то софтом будут проблемы, то можно перенести из "packages.nix" сюда
     # Например, я читал, что если ставить vscode через configuration.nix, а не через пакеты юзера,
     # то не получится ставить расширения. Потому что там софт ставится от рута и vscode
-    # будет пытаться установить расширения в каталог nix store, куда нельзя что либо ставить без рута.
+    # будет пытаться установить расширения в каталог nix store, куда нельзя что либо ставить даже с рутом.
     packages = with pkgs; [
-      vscode # Надо в home.packages писать, чтоб расширения ставились без рута
+      vscode # Надо в home.packages писать, чтоб расширения ставились
     ];
 
     sessionVariables = {
@@ -25,6 +25,8 @@
       BROWSER = "librewolf";
       TERMINAL = "alacritty";
       TERM = "alacritty";
+      QT_QPA_PLATFORMTHEME = "qt6ct";
+      # QT_STYLE_OVERRIDE = "kvantum";
       PATH = "$PATH:${config.home.homeDirectory}/go/bin";
     };
 
@@ -40,15 +42,9 @@
   };
 
   stylix = { # Выключить стили у конкретного таргета походу можно лишь в home-manager
-    targets = { # Выключить авто темы для этих приложений
-      vscode.enable = false;
-      firefox.enable = false;
-      vencord.enable = false;
-      vesktop.enable = false;
-      btop.enable = false;
-      yazi.enable = false;
-      neovim.enable = false;
-      gitui.enable = false;
+    targets = {
+      vscode.enable = false; # Руками ставлю. Не нравится stylix вариант
+      firefox.enable = false; # Руками ставлю и бекаплю каталог браузера
     };
     # iconTheme = {
     #   enable = true;

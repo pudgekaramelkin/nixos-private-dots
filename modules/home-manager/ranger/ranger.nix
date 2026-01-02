@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, spkgs, ... }: {
   programs.ranger = { # Файловый менеджер в терминале
     enable = true;
 
@@ -14,7 +14,7 @@
       lynx # Preview html pages
       poppler # Preview PDF
       djvulibre # Preview djvu
-      calibre # Preview ebooks (or epub-thumbnailer)
+      spkgs.calibre # Preview ebooks (or epub-thumbnailer)
       catdoc # Preview XLS as csv conversion
       exiftool # Information about media files
       odt2txt # For OpenDocument text files
@@ -23,7 +23,7 @@
       sqlite-utils # Fancier box drawing (optional)
       fontforge # Preview font
       openscad # 3D model previews (`stl`, `off`, `dxf`, `scad`, `csg`)
-      # drawio # Preview draw.io diagram
+      drawio # Preview draw.io diagram
       pandoc # Preview DOCX, ePub, FB2, odt, ods, odp, sxw, html (using markdown)
       
       # Plugins

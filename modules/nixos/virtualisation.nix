@@ -2,7 +2,7 @@
   
   virtualisation = {
     # podman.enable = true;
-    # waydroid.enable = true;
+    waydroid.enable = true;
 
     docker = {
       enable = true;
@@ -35,15 +35,15 @@
   #  <target type='virtio' name='org.qemu.guest_agent.0'/>
   # </channel>
 
-  services = {
-    openssh.enable = true; # Это ставится на виртуалку, чтоб к ней конект по ssh работал.
-    spice-vdagentd.enable = true; # Clipboard sharing
-    qemuGuest = {
-      enable = true; # Fix resolution
-      package = pkgs.qemu_full;
-    };
-    # Ниже я не включаю
-    # spice-webdavd.enable = true; # VirtFS alternative for directory sharing
-  };
+  # services = {
+  #   openssh.enable = true; # Это ставится на виртуалку, чтоб к ней конект по ssh работал.
+  #   spice-vdagentd.enable = true; # Clipboard sharing
+  #   qemuGuest = {
+  #     enable = true; # Fix resolution
+  #     package = pkgs.qemu_full;
+  #   };
+  #   # Ниже я не включаю
+  #   # spice-webdavd.enable = true; # VirtFS alternative for directory sharing
+  # };
 
 }

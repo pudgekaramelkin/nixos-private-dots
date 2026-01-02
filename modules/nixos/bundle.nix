@@ -1,6 +1,5 @@
 {
   imports = [
-    # ./env.nix # Мб не надо, ибо редачу через home.nix?
     # ./filesystems.nix
     ./hardware.nix
     # ./hibernate.nix

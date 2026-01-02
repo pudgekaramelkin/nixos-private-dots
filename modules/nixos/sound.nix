@@ -1,5 +1,5 @@
 { # Настройки звука
-  services.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true; # Уменьшает задержку?
   services.pipewire = {
     enable = true;

@@ -19,8 +19,8 @@ return {
         'neovim/nvim-lspconfig',
         dependencies = {
             -- Automatically install LSPs and related tools to stdpath for Neovim
-            { 'mason-org/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
-            'mason-org/mason-lspconfig.nvim',
+            { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+            'williamboman/mason-lspconfig.nvim',
             'WhoIsSethDaniel/mason-tool-installer.nvim',
 
             -- Useful status updates for LSP.
@@ -72,15 +72,6 @@ return {
                         mode = mode or 'n'
                         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
                     end
-
-                    -- Добавляем маппинг для hover с max_width = 80
-                    map('K', function()
-                        vim.lsp.buf.hover {
-                            max_width = 80,
-                            -- none, single, double, rounded, solid, shadow
-                            border = 'solid',
-                        }
-                    end, 'Hover Documentation')
 
                     -- Rename the variable under your cursor.
                     --  Most Language Servers support renaming across files, etc.
@@ -222,11 +213,6 @@ return {
 
             -- Golang
             lspconfig.gopls.setup {
-                -- settings = {
-                --     gopls = {
-                --         hoverKind = 'NoDocumentation',
-                --     },
-                -- },
                 completion = {
                     unimported = false,
                 },
@@ -241,11 +227,7 @@ return {
                 end,
             }
             lspconfig.htmx.setup {}
-            lspconfig.svelte.setup {
-                on_attach = function(client, bufnr) -- Выключить форматирование
-                    client.server_capabilities.documentFormattingProvider = false
-                end,
-            }
+            lspconfig.svelte.setup {}
             lspconfig.emmet_language_server.setup {
                 filetypes = { 'templ', 'css', 'eruby', 'html', 'javascript', 'javascriptreact', 'less', 'sass', 'scss', 'pug', 'typescriptreact' },
             }
@@ -281,13 +263,6 @@ return {
             }
 
             -- C/C++
-            -- lspconfig.ccls.setup {
-            --     init_options = {
-            --         cache = {
-            --             directory = ".ccls-cache";
-            --         };
-            --     }
-            -- }
             lspconfig.clangd.setup {
                 filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' }, -- Удалил "proto"
             }
@@ -302,13 +277,12 @@ return {
             }
 
             -- Rust
-            -- lspconfig.rust_analyzer.setup {}
+            lspconfig.rust_analyzer.setup {}
 
             -- Bash
             lspconfig.bashls.setup {
                 on_attach = function(client, bufnr)
-                    client.server_capabilities.documentFormattingProvider = false
-                    local filename = vim.api.nvim_buf_get_name(bufnr) -- Выключить форматирование
+                    local filename = vim.api.nvim_buf_get_name(bufnr)
                     if filename:match '/%.env$' or filename:match '/%.env%..+$' then
                         client.stop() -- отключить LSP только для .env
                     end
@@ -319,9 +293,6 @@ return {
             local cap_json = vim.lsp.protocol.make_client_capabilities()
             cap_json.textDocument.completion.completionItem.snippetSupport = true
             lspconfig.jsonls.setup {
-                on_attach = function(client, bufnr) -- Выключить форматирование
-                    client.server_capabilities.documentFormattingProvider = false
-                end,
                 capabilities = cap_json,
             }
 

@@ -4,8 +4,7 @@
 # Поэтому сразу поставил всё что надо и не пробовал найти необходимый минимум 
 # Мб пригодится поставить opencomposite для трансляции OpenVR в OpenXR
 
-{ pkgs, ... }: {
-
+{
   services = {
 
     # Open source XR runtime

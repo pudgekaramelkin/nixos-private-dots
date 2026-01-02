@@ -3,8 +3,6 @@
     enable = true;
   };
 
-  services.blueman.enable = true; # Tray for bluetooth
-
   networking = {
     # enableIPv6 = false;
     networkmanager.enable = true;
@@ -14,11 +12,5 @@
     firewall.enable = false;
   };
 
-  programs.throne = {
-    enable = true;
-    tunMode = {
-      enable = true;
-      # setuid = true; # Если не работает tun мод
-    };
-  };
+  services.blueman.enable = true; # Tray for bluetooth
 }

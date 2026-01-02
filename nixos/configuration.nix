@@ -52,46 +52,32 @@ in {
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit spkgs; inherit pkgs2; inherit inputs; };
-    users.${username} = ./home.nix;
+    users.${username} = import ./home.nix;
   };
 
   security.polkit = { # Всплывающее меню для ввода пароля
     enable = true;
   };
 
-  # flatpak fix: systemctl --user import-environment PATH
-  # systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk
-
-  # rollback: systemctl --user unset-environment PATH
-
-  # check: systemctl --user show-environment | grep PATH
-
-  # default: PATH=/nix/store/3abwqv1a1bdycmgaydzfw3a0qzxwk8am-systemd-256.8/bin/
-
-  # test:
-  # flatpak run --command=sh com.github.tchx84.Flatseal
-  # xdg-open https://example.com
-
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
-    config.common.default = [ "gtk" "*" ];
+    configPackages = with pkgs; [
+      xdg-desktop-portal
+      # kdePackages.xdg-desktop-portal-kde
+      # xdg-desktop-portal-gtk # Чтоб загружать файлы и стримить в дискорде
+    ];
     extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
+      xdg-desktop-portal
+      # kdePackages.xdg-desktop-portal-kde
+      # xdg-desktop-portal-gtk # Чтоб загружать файлы и стримить в дискорде
     ];
   };
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
-    # Кеш, чтоб не компилить некоторый софт
-    # Если начинает компилить, то удалить пакет и применить только с этой настройкой
-    # Потом добавить пакет обратно
-    # substituters = [
-    #   "https://cache.garnix.io"
-    # ];
-    # trusted-public-keys = [
-    #   "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" # https://github.com/mrshmllow/affinity-nix
-    # ];
+    # For nix-gaming
+    substituters = ["https://nix-gaming.cachix.org"];
+    trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
   };
 
   system.stateVersion = "24.05"; # Don't change it
