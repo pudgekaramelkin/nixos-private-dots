@@ -6,9 +6,7 @@
 # Для таких файлов я сделал каталог shit
 
 # Я не уверен надо ли писать "config.lib.file.mkOutOfStoreSymlink"
-# Вроде это более простой симлинк, чем просто ссылка на файл
-# Типо он напрямую симлинк кидает, а не через 100500 симлинков в nix/store 
-# Но мб меня обманули
+# Он работает только с абсолютными путями
 
 { config, ... }: let
   home-dir = "backups"; # Имя каталога для бекапов. Мб захочу поменять
@@ -18,17 +16,10 @@ in {
     "${home-dir}".source = config.lib.file.mkOutOfStoreSymlink "/mnt/${home-dir}"; # Чтоб остальные симлинки были от ~/backups
 
     # Secrets
-    ".password-store".source = config.lib.file.mkOutOfStoreSymlink "${dir}/Backups/.password-store"; # Для утилиты pass
     ".ssh".source = config.lib.file.mkOutOfStoreSymlink "${dir}/Backups/.ssh";
-
-    # Browsers. Мб сделать .force, чтоб удалить сток. А мб руками удалить сток перед этим
-    ".mozilla".source = config.lib.file.mkOutOfStoreSymlink "${dir}/Backups/Apps/.mozilla";
-    ".librewolf".source = config.lib.file.mkOutOfStoreSymlink "${dir}/Backups/Apps/.librewolf";
-
-    "Downloads/Telegram Desktop".source = config.lib.file.mkOutOfStoreSymlink "${dir}/Telegram Desktop";
   };
 
   xdg.configFile = { # Это для каталога .config
-    # "chromium".source = config.lib.file.mkOutOfStoreSymlink "${dir}/Backups/Apps/chromium";
+    # "vesktop/themes/my-vesktop_theme.css".source = config.lib.file.mkOutOfStoreSymlink "${dir}/Backups/Apps/my-vesktop_theme.css"
   };
 }

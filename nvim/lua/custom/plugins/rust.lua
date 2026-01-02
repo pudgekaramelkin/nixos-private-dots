@@ -3,7 +3,7 @@
 return {
     {
         'mrcjkb/rustaceanvim',
-        version = '^5', -- For nvim0.11 use '^6'
+        version = '^6', -- Recommended
         lazy = false, -- This plugin is already lazy
     },
 }

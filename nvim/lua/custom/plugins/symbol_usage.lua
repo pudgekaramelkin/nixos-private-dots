@@ -79,7 +79,7 @@ return {
                     SymbolKind.Class,
                     SymbolKind.Struct,
                     -- SymbolKind.Variable,
-                    -- SymbolKind.Constant,
+                    SymbolKind.Constant,
                 },
             }
         end,

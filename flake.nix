@@ -3,11 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Вторая unstable ветка, которую я буду обновлять отдельно
+    # Unstable ветка, которую я буду обновлять отдельно
     # Нужна если я не хочу обновлять систему, но хочу обновить конкретный софт
     # Просто задам этому софту репу pkgs2 и обновлю только её
     nixpkgs2.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+
+    # libsForQt5.kimageformats has been removed, as KDE Frameworks 5 has reached end of life
+    # Ненавижу когда мне указывают и за меня решают что есть "end of life", а что есть рабочий софт
+    # Qt5 работает, программы на нём работают, многие из них не будут обновляться до qt6
+    # Кто дал им право удалять кучу работающих программ из репозитория
+    # и помечать их как неработающее легаси?
+    # Эта репа фиксит идиотский поступок по лишению людей кучи важных программ.
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -15,19 +22,22 @@
     };
 
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-gaming = { # Удобно ставить некоторые игры
-      url = "github:fufexan/nix-gaming"; 
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Всему что ниже надо включить кеш в конце файла configuration.nix
+
+    # Аналог фотошопа, запуск через wine
+    # affinity-nix.url = "github:mrshmllow/affinity-nix";
+
+    # Удобная установка некоторых игр
+    # nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: 
   let
-    system = "x86_64-linux";
+    system = "x86_64-linux"; # Не понимаю зачем, если это в hardware.nix указывается
     config = {
       allowUnfree = true;
       rocmSupport = true;

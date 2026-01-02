@@ -8,30 +8,27 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
--- See `:help vim.opt`
+-- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
-vim.opt.number = true
+vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
-vim.opt.relativenumber = true
+vim.o.relativenumber = true
 
 -- Табуляция в 4 символа
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
 -- Юзать пробелы вместо табов
-vim.opt.expandtab = true
+vim.o.expandtab = true
 
 -- yaml lsp за меня решают сколько пробелов мне надо. Это фикс
 -- Их параметры конфига для переназначения не работают. Пришлось костыль сделать
-vim.cmd [[
-  autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-]]
-vim.cmd [[
-  autocmd FileType nix setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-]]
+-- vim.cmd [[
+--   autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+-- ]]
 
 -- Комментировать .proto код биндом
 vim.api.nvim_create_autocmd('FileType', {
@@ -58,13 +55,13 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 -- optionally enable 24-bit colour
--- vim.opt.termguicolors = true
+-- vim.o.termguicolors = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.o.showmode = false
 
 -- greatest remap ever
 vim.keymap.set('x', '<leader>p', '"_dP', { desc = '[P]aste' })
@@ -74,7 +71,7 @@ vim.keymap.set('x', '<leader>p', '"_dP', { desc = '[P]aste' })
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 -- vim.schedule(function()
---     vim.opt.clipboard = 'unnamedplus'
+--     vim.o.clipboard = 'unnamedplus'
 -- end)
 
 -- Use system clipboard via <leader>y/d, but Neovim clipboard via just y/d
@@ -84,13 +81,6 @@ vim.keymap.set('v', '<leader>y', '"+y', { desc = '[Y]ank to system clipboard' })
 vim.keymap.set('n', '<leader>d', '"+d', { desc = '[D]elete to system clipboard' })
 vim.keymap.set('v', '<leader>d', '"+d', { desc = '[D]elete to system clipboard' })
 
--- Change `K` hover documentation size
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-    -- border = 'rounded',
-    max_width = 80,
-    -- max_height = 15,
-})
-
 -- Move lines in visual mode
 vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', '<A-Down>', ":m '>+1<CR>gv=gv")
@@ -98,57 +88,62 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv")
 vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv")
 
 -- Enable break indent
-vim.opt.breakindent = true
+vim.o.breakindent = true
 
 -- Save undo history
-vim.opt.undofile = true
+vim.o.undofile = true
 
 -- Disable swap file
-vim.opt.swapfile = false
+vim.o.swapfile = false
 
 -- Settings for sessions
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 -- Highlight a vertical line at the specified column to encourage keeping lines within this limit
-vim.opt.colorcolumn = '100'
+vim.o.colorcolumn = '100'
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.o.signcolumn = 'yes'
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
+--
+--  Notice listchars is set using `vim.opt` instead of `vim.o`.
+--  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
+--   See `:help lua-options`
+--   and `:help lua-options-guide`
+vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.o.scrolloff = 10
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
--- vim.opt.confirm = true
+-- vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -199,11 +194,11 @@ vim.keymap.set('n', '<C-Up>', '<C-w><C-k>', { desc = 'Move focus to the upper wi
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
+--  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',
     group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
     callback = function()
-        vim.highlight.on_yank()
+        vim.hl.on_yank()
     end,
 })

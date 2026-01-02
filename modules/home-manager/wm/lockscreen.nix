@@ -75,6 +75,6 @@
 
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    betterlockscreen
+    betterlockscreen  
   ];
 }
